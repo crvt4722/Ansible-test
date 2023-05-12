@@ -1,0 +1,12 @@
+- name: Build the nginx image
+  shell:
+    cmd: docker images -q my_nginx | grep -q . || docker build -t my_nginx ./roles/web/files/
+
+
+- name: Build the Nginx container
+  shell:
+    cmd: docker run -d -p 80:80 --name nginx_container --link flask_app:flask --network mongodb_flask_nginx_network my_nginx 
+
+- name: Open localhost
+  shell:
+    cmd: curl localhost

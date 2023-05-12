@@ -1,0 +1,8 @@
+- name: Build the flask image
+  shell:
+    cmd: docker images -q my_flask | grep -q . || docker build -t my_flask ./roles/api/files/
+
+
+- name: Run the Flask image
+  shell:
+    cmd: docker run -d --name flask_app --network mongodb_flask_nginx_network my_flask
