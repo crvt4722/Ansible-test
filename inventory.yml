@@ -1,4 +1,5 @@
 ---
+
 all:
   hosts:
     localhost:
@@ -6,4 +7,5 @@ all:
       ansible_python_interpreter: /home/crvt4722/Documents/venv/bin/python
       ansible_become_user: root
       ansible_become_password: 04072002
-      hostname: crvt01
+    
+

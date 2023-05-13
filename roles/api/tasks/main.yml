@@ -1,8 +1,8 @@
-- name: Build the flask image
+- name: Build the api image if not exists
   shell:
     cmd: docker images -q my_flask | grep -q . || docker build -t my_flask ./roles/api/files/
 
 
-- name: Run the Flask image
+- name: Build the api container if not exists
   shell:
-    cmd: docker run -d --name flask_app --network mongodb_flask_nginx_network my_flask
+    cmd: docker inspect flask_app >/dev/null 2>&1 || docker run -d --name flask_app --network mongodb_flask_nginx_network my_flask
